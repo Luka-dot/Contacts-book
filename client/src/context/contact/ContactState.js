@@ -19,7 +19,7 @@ const ContactState = props => {
                 name: 'Alice',
                 email: 'myemail1ALICE@email.com',
                 phone: '222-123-1234',
-                type: 'personal'
+                type: 'professional'
             },
             {
                 id: 3,
@@ -33,7 +33,7 @@ const ContactState = props => {
 
     const [state, dispatch] = useReducer(contactReducer, initialState);
 
-    // ADD contact
+    // ADD contact text
 
     // DELETE contact
 
