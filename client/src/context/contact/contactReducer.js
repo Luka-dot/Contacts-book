@@ -28,7 +28,26 @@ export default (state, action) => {
                 ...state,
                 current: null
             };
-        
+        case FILTER_CONTACT:
+            return {
+                ...state,
+                filtered: state.contacts.filter((contact) => {
+                    const regex = new RegExp(`${action.payload}`, 'gi')   // 'gi' -> is global and insensitive (case insensitive for upper and lowercase).
+                    return contact.name.match(regex) || contact.email.match(regex)       //  match() is a function available on RegEx
+                    /*   RegExp is same as below code
+                        filtered: state.contacts.filter(contact => {
+                        return (
+                            contact.name.toLowerCase().includes(action.payload) ||
+                            contact.email.toLowerCase().includes(action.payload)
+                        );
+                    */
+                })
+            };
+        case CLEAR_FILTER:
+            return {
+                ...state,
+                filtered: null
+            };        
 
         default:
             return state
