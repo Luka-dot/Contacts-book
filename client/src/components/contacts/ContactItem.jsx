@@ -38,5 +38,4 @@ const ContactItem = ({ contact }) => {
     )
 }
 
-
 export default ContactItem
