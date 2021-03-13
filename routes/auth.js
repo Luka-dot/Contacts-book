@@ -22,7 +22,7 @@ router.get('/', auth, async (req, res) => {
 });
 
 // @route   POST    api/auth
-// @desc    Auth user and get tokenr
+// @desc    Auth user and get token
 // @access  Public
 router.post('/', [
     check('email', 'Please include email').isEmail(),
