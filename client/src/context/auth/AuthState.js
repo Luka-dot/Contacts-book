@@ -2,7 +2,7 @@ import React, { useReducer } from 'react';
 import axios from 'axios';
 import authContext from './AuthContext';
 import authReducer from './AuthReducer';
-import { REGISTER_SUCCESS, REGISTER_FAIL, CLEAR_ERRORS, USER_LOADED, AUTH_ERROR } from '../types';
+import { REGISTER_SUCCESS, REGISTER_FAIL, CLEAR_ERRORS, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL } from '../types';
 import setAuthToken from '../../utils/sethAuthToken';
 
 const AuthtState = props => {
@@ -60,7 +60,29 @@ const AuthtState = props => {
    }
 
    // LOGIN user
-   const login = () => console.log('login')
+   const login = async formData => {
+    const config = {
+     headers: {
+         'Content-Type': 'application/json'
+       }
+    }
+
+    try {                // only need /api/ since proxy value is defined in package.json
+        const res = await axios.post('/api/auth', formData, config);
+
+        dispatch({
+            type: LOGIN_SUCCESS,
+            payload: res.data
+        });
+
+        loadUser()
+    } catch (err) {
+        dispatch({
+            type: LOGIN_FAIL,
+            payload: err.response.data.msg
+        })
+    }
+}
 
    // Logout
    const logout = () => console.log('logout')
