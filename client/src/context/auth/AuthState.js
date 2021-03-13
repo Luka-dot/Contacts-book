@@ -2,7 +2,7 @@ import React, { useReducer } from 'react';
 import axios from 'axios';
 import authContext from './AuthContext';
 import authReducer from './AuthReducer';
-import { REGISTER_SUCCESS, REGISTER_FAIL, CLEAR_ERRORS, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL } from '../types';
+import { REGISTER_SUCCESS, REGISTER_FAIL, CLEAR_ERRORS, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT } from '../types';
 import setAuthToken from '../../utils/sethAuthToken';
 
 const AuthtState = props => {
@@ -85,7 +85,7 @@ const AuthtState = props => {
 }
 
    // Logout
-   const logout = () => console.log('logout')
+   const logout = () => dispatch({ type: LOGOUT })
 
    //Clear error
    const clearError = () => dispatch({ type: CLEAR_ERRORS })
