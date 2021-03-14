@@ -61,16 +61,16 @@ export default (state, action) => {
                 ...state,
                 error: null
             }
-        case LOGOUT:
-            localStorage.removeItem('token');
+            case LOGOUT:
+                localStorage.removeItem('token');
             return {
                 ...state,
                 token: null,
-                isAuthenticated: null,
-                loading: true,
+                isAuthenticated: false,
+                loading: false,
                 user: null,
-                error: null
-            }
+                error: action.payload
+            };
 
         default:
             return state

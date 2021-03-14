@@ -4,14 +4,18 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAddressBook, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 import AuthContext from '../../context/auth/AuthContext'
+import ContactContext from '../../context/contact/contactContex'
 
 const Navbar = () => {
     const authContext = useContext(AuthContext)
+    const contactContext = useContext(ContactContext)
 
     const { isAuthenticated, logout, user } = authContext
+    const { clearContacts } = contactContext
 
     const onLogout = () => {
         logout()
+        clearContacts()
     }
 
     const authLinks = (
